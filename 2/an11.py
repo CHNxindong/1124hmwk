@@ -18,6 +18,7 @@ def mean_filter(img, K_size=3):
     for y in range(H):
         for x in range(W):
             for c in range(C):
+                # 均值代替
                 out[pad + y, pad + x, c] = np.mean(tmp[y: y + K_size, x: x + K_size, c])
 
     out = out[pad: pad + H, pad: pad + W].astype(np.uint8)
@@ -25,6 +26,6 @@ def mean_filter(img, K_size=3):
     return out
 
 if __name__ == '__main__':
-    img = cv2.imread("../imori.jpg")
+    img = cv2.imread("imori_noise.jpg")
     out = mean_filter(img, K_size=3)
     cv2.imwrite("out11.jpg", out)

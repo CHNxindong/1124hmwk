@@ -18,11 +18,12 @@ def median_filter(img, K_size=3):
     for y in range(H):
         for x in range(W):
             for c in range(C):
+                # 找到3*3 的median 就一个值   ：都是一个值替代3*3
                 out[pad+y, pad+x, c] = np.median(tmp[y:y+K_size, x:x+K_size, c])
     out = out[pad:pad+H, pad:pad+W].astype(np.uint8)
     return out
 
 if __name__ == '__main__':
-    img = cv2.imread("../imori_noise.jpg")
+    img = cv2.imread("imori_noise.jpg")
     out = median_filter(img, K_size=3)
     cv2.imwrite("out10.jpg", out)
