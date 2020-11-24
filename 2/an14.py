@@ -23,7 +23,7 @@ def BGR2GRAY(img):
 def different_filter(img, K_size=3):
 	H, W, C = img.shape
 
-	# Zero padding
+	# 进行padding
 	pad = K_size // 2
 	out = np.zeros((H + pad * 2, W + pad * 2), dtype=np.float)
 	out[pad: pad + H, pad: pad + W] = gray.copy().astype(np.float)
@@ -32,9 +32,9 @@ def different_filter(img, K_size=3):
 	out_v = out.copy()
 	out_h = out.copy()
 
-	# vertical kernel
+	# 垂直
 	Kv = [[0., -1., 0.],[0., 1., 0.],[0., 0., 0.]]
-	# horizontal kernel
+	# 水平
 	Kh = [[0., 0., 0.],[-1., 1., 0.], [0., 0., 0.]]
 
 	# filtering

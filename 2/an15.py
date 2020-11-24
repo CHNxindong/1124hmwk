@@ -37,9 +37,8 @@ def sobel_filter(img, K_size=3):
 	out_v = out.copy()
 	out_h = out.copy()
 
-	## Sobel vertical
+	# 手工定义的滤波器
 	Kv = [[1., 2., 1.],[0., 0., 0.], [-1., -2., -1.]]
-	## Sobel horizontal
 	Kh = [[1., 0., -1.],[2., 0., -2.],[1., 0., -1.]]
 
 	# filtering

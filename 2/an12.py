@@ -10,7 +10,8 @@ import numpy as np
 def motion_filter(img, K_size=3):
     H, W, C = img.shape
 
-    K = np.diag( [1] * K_size ).astype(np.float)
+    K = np.diag([1] * K_size).astype(np.float)
+    print(K)
     K /= K_size
 
     pad = K_size // 2
@@ -21,6 +22,7 @@ def motion_filter(img, K_size=3):
     for y in range(H):
         for x in range(W):
             for c in range(C):
+                # 按位相乘 求和 一个值替代 3*3
                 out[pad + y, pad + x, c] = np.sum(K * tmp[y: y + K_size, x: x + K_size, c])
 
     out = out[pad: pad + H, pad: pad + W].astype(np.uint8)

@@ -22,8 +22,10 @@ def max_min_filter(img, K_size=3):
     out = np.zeros((H + pad * 2, W + pad * 2), dtype=np.float)
     out[pad: pad + H, pad: pad + W] = gray.copy().astype(np.float)
     tmp = out.copy()
+
     for y in range(H):
         for x in range(W):
+            # 最大之间最小值 替代3*3
             out[pad + y, pad + x] = np.max(tmp[y: y + K_size, x: x + K_size]) - \
                 np.min(tmp[y: y + K_size, x: x + K_size])
 
@@ -32,7 +34,8 @@ def max_min_filter(img, K_size=3):
     return out
 
 if __name__ == '__main__':
-    img = cv2.imread("../imori.jpg").astype(np.float)
+    img = cv2.imread("imori.jpg").astype(np.float)
     gray = BGR2GRAY(img)
+    # 找轮廓
     out = max_min_filter(gray, K_size=3)
     cv2.imwrite("out13.jpg", out)
